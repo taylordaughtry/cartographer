@@ -47,6 +47,49 @@ And here's a rundown of the options:
 | accessToken      | *string* | Your Mapbox access token. |
 | projectId      | *string* | The ID of your Mapbox project. |
 
+## Working with Markers
+
+Markers are at the core of web maps. They're the simplest `feature` you can
+get&mdash;an `x,y` value for a point&mdash;but they're used everyday
+in maps across the web, and have immense usefulness in visualizing data and
+locations.
+
+Here's how you create a marker with Cartographer:
+
+```javascript
+var point = {
+	x: 35.92,
+	y: -86.87,
+	options: {
+		title: 'Marker Title',
+		opacity: 0.7,
+		draggable: false,
+		clickable: true
+	}
+};
+
+Wee.Cartographer.addMarker(point, 'uniqueMarkerName');
+```
+
+And here are the options:
+
+| Option        | Type           | Required | Explanation  |
+|:-------------:|:-------------:|:---:| -----|
+| x      | *int* | yes | The *x* coordinate of the marker. |
+| y      | *int* | yes | The *y* coordinate of the marker. |
+| options      | *object* | no | Any options available [here](http://leafletjs.com/reference.html#marker-options). |
+
+When you create a marker, Cartographer generates it, adds it to your map, and
+saves it the `Wee.Cartographer.markers` object using your unique identifier.
+When you remove a marker, this identifier is what Cartographer uses to find the
+marker and remove it from the map.
+
+Here's how you remove a marker:
+
+```javascript
+Wee.Cartographer.removeMarker('uniqueMarkerName');
+```
+
 
 ## Cartographer's Features
 
