@@ -25,7 +25,7 @@ information, the `id` of your div where it'll be creating the map, and the
 coordinates of where you'd like the map to render on pageload. (Your
 startPoint.)
 
-Here's how your start Cartographer in your JS controller:
+Here's how you initialize Cartographer in your JS controller:
 
 ```javascript
 Wee.Cartographer.init({
