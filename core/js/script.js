@@ -38,6 +38,8 @@ Wee.fn.make('Cartographer', {
 		var marker = L.marker([point.x, point.y], point.options).addTo(this.map);
 
 		this.markers[markerId] = marker;
+
+		return this.markers[markerId];
 	},
 
 	/**
@@ -50,5 +52,7 @@ Wee.fn.make('Cartographer', {
 		this.map.removeLayer(this.markers[markerId]);
 
 		delete this.markers[markerId];
+
+		return true;
 	}
 });
