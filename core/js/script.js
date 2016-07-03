@@ -23,9 +23,32 @@ Wee.fn.make('Cartographer', {
 
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', providerOptions)
 			.addTo(this.map);
-	}
-}, {
-	method: function() {
-		// ...
+
+		this.markers = {};
+	},
+
+	/**
+	 * Adds a marker to the map.
+	 *
+	 * @param {array} point The x/y location of the marker, and any options
+	 * @param {string} markerId An identifier for this marker
+	 * @return void
+	 */
+	addMarker: function(point, markerId) {
+		var marker = L.marker([point.x, point.y], point.options).addTo(this.map);
+
+		this.markers[markerId] = marker;
+	},
+
+	/**
+	 * Removes a marker from the map
+	 *
+	 * @param {string} markerId The marker's identifier
+	 * @return void
+	 */
+	removeMarker: function(markerId) {
+		this.map.removeLayer(this.markers[markerId]);
+
+		delete this.markers[markerId];
 	}
 });
