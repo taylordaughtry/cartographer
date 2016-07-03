@@ -25,6 +25,7 @@ Wee.fn.make('Cartographer', {
 			.addTo(this.map);
 
 		this.markers = {};
+		this.circles = {};
 	},
 
 	/**
@@ -49,7 +50,10 @@ Wee.fn.make('Cartographer', {
 	},
 
 	/**
-	 * Removes a marker from the map
+	 * Removes a marker from the map.
+	 *
+	 * TODO: Combine these into one method to remove any feature from map
+	 * TODO: Handle boolean returns properly instead of always true
 	 *
 	 * @param {string} markerId The marker's identifier
 	 * @return void
@@ -58,6 +62,34 @@ Wee.fn.make('Cartographer', {
 		this.map.removeLayer(this.markers[markerId]);
 
 		delete this.markers[markerId];
+
+		return true;
+	},
+
+	/**
+	 * Add a circle to the map.
+	 *
+	 * @param {[type]} centerPoint [description]
+	 * @param {[type]} radius [description]
+	 */
+	addCircle: function(settings) {
+		var circle = L.circle(settings.centerPoint, settings.radius);
+
+		circle.addTo(this.map);
+
+		this.circles[settings.id] = circle;
+	},
+
+	/**
+	 * Remove a circle from the map.
+	 *
+	 * @param {string} identifier The circle's identifier
+	 * @return boolean
+	 */
+	removeCircle: function(identifier) {
+		this.map.removeLayer(this.circles[identifier]);
+
+		delete this.circles[identifier];
 
 		return true;
 	}
