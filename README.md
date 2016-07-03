@@ -65,6 +65,14 @@ var point = {
 		opacity: 0.7,
 		draggable: false,
 		clickable: true
+	},
+	popup: {
+		content: Wee.view.render('cartographer.popup'),
+		options: {
+			offset: [1, -34],
+			autoPanPaddingTopLeft: [50, 50],
+			closeButton: false
+		}
 	}
 };
 
@@ -78,6 +86,7 @@ And here are the options:
 | x      | *int* | yes | The *x* coordinate of the marker. |
 | y      | *int* | yes | The *y* coordinate of the marker. |
 | options      | *object* | no | Any options available [here](http://leafletjs.com/reference.html#marker-options). |
+| popup      | *object* | no | Create a popup for this marker. Takes any options available [here](http://leafletjs.com/reference.html#popup-options). |
 
 When you create a marker, Cartographer generates it, adds it to your map, and
 saves it the `Wee.Cartographer.markers` object using your unique identifier.
