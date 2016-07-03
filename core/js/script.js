@@ -15,7 +15,7 @@ Wee.fn.make('Cartographer', {
 				accessToken: setup.accessToken
 			};
 
-		this.map = L.map(setup.id).setView(setup.startPoint, setup.startZoom);
+		this.map = L.map($('ref:' + setup.ref)[0]).setView(setup.startPoint, setup.startZoom);
 
 		this.map.attributionControl.setPrefix(false);
 

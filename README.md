@@ -21,7 +21,7 @@ to boot up Cartographer.
 ## Initalizing Cartographer
 
 To initialize a map, Cartographer needs a few things: your Mapbox connection
-information, the `id` of your div where it'll be creating the map, and the
+information, the `data-ref` of your div where it'll be creating the map, and the
 coordinates of where you'd like the map to render on pageload. (Your
 startPoint.)
 
@@ -31,7 +31,7 @@ Here's how you initialize Cartographer in your JS controller:
 Wee.Cartographer.init({
 	startPoint: [35.92, -86.87],
 	startZoom: 13,
-	id: 'map',
+	ref: 'map',
 	accessToken: 'myAccessToken'
 	projectId: 'myProjectId'
 });
@@ -43,7 +43,7 @@ And here's a rundown of the options:
 |:-------------:|:-------------:| -----|
 | startPoint      | *object* | The coordinates of the starting center point of the map. |
 | startZoom      | *int* | The default zoom level of the map. |
-| id      | *string* | The `id` of the `div` where you'd like the map to appear. |
+| ref      | *string* | The `data-ref` of the `div` where you'd like the map to appear. |
 | accessToken      | *string* | Your Mapbox access token. |
 | projectId      | *string* | The ID of your Mapbox project. |
 
