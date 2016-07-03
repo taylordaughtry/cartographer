@@ -24,6 +24,7 @@ Wee.fn.make('Cartographer', {
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', providerOptions)
 			.addTo(this.map);
 
+		// TODO: Store these values in a general sense, rather than specifically
 		this.markers = {};
 		this.circles = {};
 	},
@@ -92,5 +93,19 @@ Wee.fn.make('Cartographer', {
 		delete this.circles[identifier];
 
 		return true;
+	},
+
+	/**
+	 * Check whether a given circle or polygon contains a given marker.
+	 *
+	 * @param {string} container The container's identifier
+	 * @param {string} identifier The marker's identifier
+	 * @return boolean
+	 */
+	contains: function(container, identifier) {
+		return this.circles[container]
+			.getBounds()
+			.contains(this.markers[identifier]
+			.getLatLng());
 	}
 });
