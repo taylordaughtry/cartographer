@@ -35,7 +35,13 @@ Wee.fn.make('Cartographer', {
 	 * @return void
 	 */
 	addMarker: function(point, markerId) {
-		var marker = L.marker([point.x, point.y], point.options).addTo(this.map);
+		var marker = L.marker([point.x, point.y], point.options);
+
+		if (point.popup) {
+			marker.bindPopup(point.popup.content, point.popup.options);
+		}
+
+		marker.addTo(this.map);
 
 		this.markers[markerId] = marker;
 
