@@ -5,105 +5,10 @@ that makes creating and managing web maps easier. It uses Leaflet 0.7.7 and
 Mapbox. The intent of this module is to make web maps easier & faster to
 implement on client sites, while taking advantage of Wee's JS capabilities.
 
-# Installation
-
-Download the `master` branch of this repo and rename the extracted folder to
-`cartographer`. Place that in your `/source/js/modules/` folder, then do a
-`wee run` to rebuild your code and include Cartographer in your JS.
-
-# Usage
-
-Go to [Mapbox](https://www.mapbox.com/studio/) and grab your Access Token. Then,
-using the 'Classic' projects, create a new 'Mapbox Editor' project, build the
-style needed for your map, and grab the project ID. From there, you're all ready
-to boot up Cartographer.
-
-## Initalizing Cartographer
-
-To initialize a map, Cartographer needs a few things: your Mapbox connection
-information, the `data-ref` of your div where it'll be creating the map, and the
-coordinates of where you'd like the map to render on pageload. (Your
-startPoint.)
-
-Here's how you initialize Cartographer in your JS controller:
-
-```javascript
-Wee.Cartographer.init({
-	startPoint: [35.92, -86.87],
-	startZoom: 13,
-	ref: 'map',
-	accessToken: 'myAccessToken'
-	projectId: 'myProjectId'
-});
-```
-
-And here's a rundown of the options:
-
-| Option        | Type           | Explanation  |
-|:-------------:|:-------------:| -----|
-| startPoint      | *object* | The coordinates of the starting center point of the map. |
-| startZoom      | *int* | The default zoom level of the map. |
-| ref      | *string* | The `data-ref` of the `div` where you'd like the map to appear. |
-| accessToken      | *string* | Your Mapbox access token. |
-| projectId      | *string* | The ID of your Mapbox project. |
-
-## Working with Markers
-
-Markers are at the core of web maps. They're the simplest `feature` you can
-get&mdash;an `x,y` value for a point&mdash;but they're used everyday
-in maps across the web, and have immense usefulness in visualizing data and
-locations.
-
-Here's how you create a marker with Cartographer:
-
-```javascript
-var point = {
-	x: 35.92,
-	y: -86.87,
-	options: {
-		title: 'Marker Title',
-		opacity: 0.7,
-		draggable: false,
-		clickable: true
-	},
-	popup: {
-		content: Wee.view.render('cartographer.popup'),
-		options: {
-			offset: [1, -34],
-			autoPanPaddingTopLeft: [50, 50],
-			closeButton: false
-		}
-	}
-};
-
-Wee.Cartographer.addMarker(point, 'uniqueMarkerName');
-```
-
-And here are the options:
-
-| Option        | Type           | Required | Explanation  |
-|:-------------:|:-------------:|:---:| -----|
-| x      | *int* | yes | The *x* coordinate of the marker. |
-| y      | *int* | yes | The *y* coordinate of the marker. |
-| options      | *object* | no | Any options available [here](http://leafletjs.com/reference.html#marker-options). |
-| popup      | *object* | no | Create a popup for this marker. Takes any options available [here](http://leafletjs.com/reference.html#popup-options). |
-
-When you create a marker, Cartographer generates it, adds it to your map, and
-saves it the `Wee.Cartographer.markers` object using your unique identifier.
-When you remove a marker, this identifier is what Cartographer uses to find the
-marker and remove it from the map.
-
-Here's how you remove a marker:
-
-```javascript
-Wee.Cartographer.removeMarker('uniqueMarkerName');
-```
-
-
-## Cartographer's Features
+## Feature Roadmap
 
 Cartographer has most of the features you'll be looking for when creating maps.
 Centering on coordinates, setting zoom levels, and adding features are all
-possible in Cartographer. If you don't see something you'd like, open an issue
-in this repo and let's talk about it. If it's a good idea, I'll build it into
-Cartographer in the next release.
+possible in Cartographer. If you encounter a situation where you're lacking
+a feature, open an issue in this repo and let's talk about it. If it's a good
+idea, I'll build it into Cartographer for the next release.
