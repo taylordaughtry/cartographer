@@ -79,7 +79,7 @@ Wee.fn.make('Cartographer', {
 	removeMarker: function(identifier) {
 		this.map.removeLayer(this.markers[identifier]);
 
-		delete this.markers[identifier];
+		this.markers[identifier] = null;
 
 		return true;
 	},
@@ -107,7 +107,7 @@ Wee.fn.make('Cartographer', {
 	removeCircle: function(identifier) {
 		this.map.removeLayer(this.circles[identifier]);
 
-		delete this.circles[identifier];
+		this.circles[identifier] = null;
 
 		return true;
 	},
@@ -123,7 +123,7 @@ Wee.fn.make('Cartographer', {
 	removePolygon: function(identifier) {
 		this.map.removeLayer(this.polygons[identifier]);
 
-		delete this.polygons[identifier];
+		this.polygons[identifier] = null;
 
 		return true;
 	},
