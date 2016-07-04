@@ -112,6 +112,12 @@ Wee.fn.make('Cartographer', {
 		return true;
 	},
 
+	/**
+	 * Add a polygon to the map.
+	 *
+	 * @param {object} params Points and options for a polygon
+	 * @return void
+	 */
 	addPolygon: function(params) {
 		var polygon = L.polygon(params.points);
 
@@ -120,6 +126,12 @@ Wee.fn.make('Cartographer', {
 		polygon.addTo(this.map);
 	},
 
+	/**
+	 * Remove a polygon from the map.
+	 *
+	 * @param {string} identifier The polygon's identifier
+	 * @return boolean
+	 */
 	removePolygon: function(identifier) {
 		this.map.removeLayer(this.polygons[identifier]);
 
