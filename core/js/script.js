@@ -22,6 +22,8 @@ Wee.fn.make('Cartographer', {
 		}, params),
 			url;
 
+		this.conf = conf;
+
 		if (! conf.mapbox) {
 			url = 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png';
 		} else {
@@ -139,5 +141,19 @@ Wee.fn.make('Cartographer', {
 			.getBounds()
 			.contains(this.markers[identifier]
 			.getLatLng());
+	},
+
+	/**
+	 * Move the map view to a given set of coordinates
+	 *
+	 * TODO: Add zoom functionality
+	 *
+	 * @param {array} coords the lat/long coordinates
+	 * @return void
+	 */
+	panTo: function(coords) {
+		this.map.setView(coords, this.conf.startZoom, {
+			animation: true
+		});
 	}
 });
