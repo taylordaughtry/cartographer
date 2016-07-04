@@ -5,6 +5,8 @@ Wee.fn.make('Cartographer', {
 	 * Creates the map using the ID you've provided, and sets image paths and
 	 * attribution settings that we commonly use.
 	 *
+	 * TODO: Default to OpenStreetMaps if no accessToken/projectId
+	 *
 	 * @param {object} setup
 	 * @return void
 	 */
