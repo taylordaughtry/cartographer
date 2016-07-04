@@ -35,16 +35,16 @@ Wee.fn.make('Cartographer', {
 	 * @param {array} marker The lat/long location of the marker, and any options
 	 * @return void
 	 */
-	addMarker: function(options) {
-		var marker = L.marker([options.lat, options.long], options.options);
+	addMarker: function(params) {
+		var marker = L.marker([params.lat, params.long], params.options);
 
-		if (options.popup) {
-			marker.bindPopup(options.popup.content, options.popup.options);
+		if (params.popup) {
+			marker.bindPopup(params.popup.content, params.popup.options);
 		}
 
 		marker.addTo(this.map);
 
-		this.markers[options.id] = marker;
+		this.markers[params.id] = marker;
 
 		return this.markers[marker.id];
 	},
@@ -55,13 +55,13 @@ Wee.fn.make('Cartographer', {
 	 * TODO: Combine these into one method to remove any feature from map
 	 * TODO: Handle boolean returns properly instead of always true
 	 *
-	 * @param {string} markerId The marker's identifier
+	 * @param {string} identifier The marker's identifier passed during creation
 	 * @return void
 	 */
-	removeMarker: function(markerId) {
-		this.map.removeLayer(this.markers[markerId]);
+	removeMarker: function(identifier) {
+		this.map.removeLayer(this.markers[identifier]);
 
-		delete this.markers[markerId];
+		delete this.markers[identifier];
 
 		return true;
 	},
@@ -69,15 +69,15 @@ Wee.fn.make('Cartographer', {
 	/**
 	 * Add a circle to the map.
 	 *
-	 * @param {[type]} centerPoint [description]
-	 * @param {[type]} radius [description]
+	 * @param {object} params Settings to define a circle
+	 * @return void
 	 */
-	addCircle: function(settings) {
-		var circle = L.circle(settings.centerPoint, settings.radius);
+	addCircle: function(params) {
+		var circle = L.circle(params.centerPoint, params.radius);
 
 		circle.addTo(this.map);
 
-		this.circles[settings.id] = circle;
+		this.circles[params.id] = circle;
 	},
 
 	/**
