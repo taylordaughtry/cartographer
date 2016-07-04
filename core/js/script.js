@@ -35,16 +35,16 @@ Wee.fn.make('Cartographer', {
 	 * @param {array} marker The x/y location of the marker, and any options
 	 * @return void
 	 */
-	addMarker: function(marker) {
-		var marker = L.marker([marker.x, marker.y], marker.options);
+	addMarker: function(options) {
+		var marker = L.marker([options.x, options.y], options.options);
 
-		if (marker.popup) {
-			marker.bindPopup(marker.popup.content, marker.popup.options);
+		if (options.popup) {
+			marker.bindPopup(options.popup.content, options.popup.options);
 		}
 
 		marker.addTo(this.map);
 
-		this.markers[marker.id] = marker;
+		this.markers[options.id] = marker;
 
 		return this.markers[marker.id];
 	},
