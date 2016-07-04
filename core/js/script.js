@@ -147,6 +147,7 @@ Wee.fn.make('Cartographer', {
 	 * Move the map view to a given set of coordinates
 	 *
 	 * TODO: Add zoom functionality
+	 * TODO: Add support for options
 	 *
 	 * @param {array} coords the lat/long coordinates
 	 * @return void
