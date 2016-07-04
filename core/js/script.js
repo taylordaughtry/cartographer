@@ -6,25 +6,39 @@ Wee.fn.make('Cartographer', {
 	 * attribution settings that we commonly use.
 	 *
 	 * TODO: Default to OpenStreetMaps if no accessToken/projectId
+	 * TODO: Put the config into a single object
+	 * TODO: Add scrollToMarker functionality
 	 *
 	 * @param {object} setup
 	 * @return void
 	 */
-	init: function(setup) {
-		var providerOptions = {
-				attribution: Wee.view.render('cartographer.attribution'),
-				id: setup.projectId,
-				accessToken: setup.accessToken
-			};
+	init: function(params) {
+		var conf = $.extend({
+			startPoint: [36.16, -86.78],
+			startZoom: 13,
+			ref: 'map',
+			mapbox: false,
+			attribution: Wee.view.render('cartographer.attribution')
+		}, params),
+			url;
 
-		this.map = L.map($('ref:' + setup.ref)[0]).setView(setup.startPoint, setup.startZoom);
+		if (! conf.mapbox) {
+			url = 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png';
+		} else {
+			url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
+		}
+
+		this.map = L.map($('ref:' + conf.ref)[0]).setView(conf.startPoint, conf.startZoom);
 
 		this.map.attributionControl.setPrefix(false);
 
 		L.Icon.Default.imagePath = '/assets/modules/cartographer/img/';
 
-		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', providerOptions)
-			.addTo(this.map);
+		L.tileLayer(url, {
+			attribution: conf.attribution,
+			id: conf.mapbox.projectId,
+			accessToken: conf.mapbox.accessToken
+		}).addTo(this.map);
 
 		// TODO: Store these values in a general sense, rather than specifically
 		this.markers = {};
