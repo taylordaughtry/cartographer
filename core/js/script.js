@@ -145,14 +145,14 @@ Wee.fn.make('Cartographer', {
 	/**
 	 * Move the map view to a given set of coordinates
 	 *
-	 * TODO: Add zoom functionality
 	 * TODO: Add support for options
 	 *
 	 * @param {array} coords the lat/long coordinates
+	 * @param {int} zoom Map zoom level
 	 * @return void
 	 */
-	panTo: function(coords) {
-		this.map.setView(coords, this.conf.startZoom, {
+	panTo: function(coords, zoom) {
+		this.map.setView(coords, zoom ? zoom : this.conf.startZoom, {
 			animation: true
 		});
 	}
