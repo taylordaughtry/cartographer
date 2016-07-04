@@ -27,6 +27,7 @@ Wee.fn.make('Cartographer', {
 		// TODO: Store these values in a general sense, rather than specifically
 		this.markers = {};
 		this.circles = {};
+		this.polygons = {};
 	},
 
 	/**
@@ -90,6 +91,22 @@ Wee.fn.make('Cartographer', {
 		this.map.removeLayer(this.circles[identifier]);
 
 		delete this.circles[identifier];
+
+		return true;
+	},
+
+	addPolygon: function(params) {
+		var polygon = L.polygon(params.points);
+
+		this.polygons[params.id] = polygon;
+
+		polygon.addTo(this.map);
+	},
+
+	removePolygon: function(identifier) {
+		this.map.removeLayer(this.polygons[identifier]);
+
+		delete this.polygons[identifier];
 
 		return true;
 	},
