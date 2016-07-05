@@ -158,13 +158,13 @@ Wee.fn.make('Cartographer', {
 	 * Move the map view to a given set of coordinates
 	 *
 	 * TODO: Add support for options
+	 * TODO: Add support for passing a marker to be scrolled to
 	 *
-	 * @param {array} coords the lat/long coordinates
-	 * @param {int} zoom Map zoom level
+	 * @param {array} params The options object for this method
 	 * @return void
 	 */
-	panTo: function(coords, zoom) {
-		this.map.setView(coords, zoom ? zoom : this.conf.startZoom, {
+	panTo: function(params) {
+		this.map.setView(params.coords, params.zoom ? params.zoom : this.conf.startZoom, {
 			animation: true
 		});
 	}
