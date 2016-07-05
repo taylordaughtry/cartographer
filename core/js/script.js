@@ -64,7 +64,7 @@ Wee.fn.make('Cartographer', {
 
 		this.markers[params.id] = marker;
 
-		return this.markers[marker.id];
+		return this.markers[params.id];
 	},
 
 	/**
