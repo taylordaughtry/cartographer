@@ -24,7 +24,7 @@ Wee.fn.make('Cartographer', {
 		this.conf = conf;
 
 		if (! conf.mapbox) {
-			url = 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
+			url = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
 		} else {
 			url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
 		}
