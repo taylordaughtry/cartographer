@@ -42,9 +42,7 @@ Wee.fn.make('Cartographer', {
 		}).addTo(this.map);
 
 		// TODO: Store these values in a general sense, rather than specifically
-		this.markers = {};
-		this.circles = {};
-		this.polygons = {};
+		this.features = {};
 	},
 
 	/**
@@ -62,9 +60,9 @@ Wee.fn.make('Cartographer', {
 
 		marker.addTo(this.map);
 
-		this.markers[params.id] = marker;
+		this.features[params.id] = marker;
 
-		return this.markers[params.id];
+		return this.features[params.id];
 	},
 
 	/**
@@ -77,9 +75,9 @@ Wee.fn.make('Cartographer', {
 	 * @return void
 	 */
 	removeMarker: function(identifier) {
-		this.map.removeLayer(this.markers[identifier]);
+		this.map.removeLayer(this.features[identifier]);
 
-		this.markers[identifier] = null;
+		this.features[identifier] = null;
 
 		return true;
 	},
@@ -95,7 +93,7 @@ Wee.fn.make('Cartographer', {
 
 		circle.addTo(this.map);
 
-		this.circles[params.id] = circle;
+		this.features[params.id] = circle;
 	},
 
 	/**
@@ -105,9 +103,9 @@ Wee.fn.make('Cartographer', {
 	 * @return boolean
 	 */
 	removeCircle: function(identifier) {
-		this.map.removeLayer(this.circles[identifier]);
+		this.map.removeLayer(this.features[identifier]);
 
-		this.circles[identifier] = null;
+		this.features[identifier] = null;
 
 		return true;
 	},
@@ -121,7 +119,7 @@ Wee.fn.make('Cartographer', {
 	addPolygon: function(params) {
 		var polygon = L.polygon(params.points);
 
-		this.polygons[params.id] = polygon;
+		this.features[params.id] = polygon;
 
 		polygon.addTo(this.map);
 	},
@@ -133,9 +131,9 @@ Wee.fn.make('Cartographer', {
 	 * @return boolean
 	 */
 	removePolygon: function(identifier) {
-		this.map.removeLayer(this.polygons[identifier]);
+		this.map.removeLayer(this.features[identifier]);
 
-		this.polygons[identifier] = null;
+		this.features[identifier] = null;
 
 		return true;
 	},
@@ -148,9 +146,9 @@ Wee.fn.make('Cartographer', {
 	 * @return boolean
 	 */
 	contains: function(container, identifier) {
-		return this.circles[container]
+		return this.features[container]
 			.getBounds()
-			.contains(this.markers[identifier]
+			.contains(this.features[identifier]
 			.getLatLng());
 	},
 
