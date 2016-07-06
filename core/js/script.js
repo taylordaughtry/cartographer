@@ -66,23 +66,6 @@ Wee.fn.make('Cartographer', {
 	},
 
 	/**
-	 * Removes a marker from the map.
-	 *
-	 * TODO: Combine these into one method to remove any feature from map
-	 * TODO: Handle boolean returns properly instead of always true
-	 *
-	 * @param {string} identifier The marker's identifier passed during creation
-	 * @return void
-	 */
-	removeMarker: function(identifier) {
-		this.map.removeLayer(this.features[identifier]);
-
-		this.features[identifier] = null;
-
-		return true;
-	},
-
-	/**
 	 * Add a circle to the map.
 	 *
 	 * @param {object} params Settings to define a circle
@@ -94,20 +77,6 @@ Wee.fn.make('Cartographer', {
 		circle.addTo(this.map);
 
 		this.features[params.id] = circle;
-	},
-
-	/**
-	 * Remove a circle from the map.
-	 *
-	 * @param {string} identifier The circle's identifier
-	 * @return boolean
-	 */
-	removeCircle: function(identifier) {
-		this.map.removeLayer(this.features[identifier]);
-
-		this.features[identifier] = null;
-
-		return true;
 	},
 
 	/**
@@ -125,12 +94,14 @@ Wee.fn.make('Cartographer', {
 	},
 
 	/**
-	 * Remove a polygon from the map.
+	 * Removes a feature from the map.
 	 *
-	 * @param {string} identifier The polygon's identifier
-	 * @return boolean
+	 * TODO: Handle boolean returns properly instead of always true
+	 *
+	 * @param {string} identifier The feature's identifier passed during creation
+	 * @return void
 	 */
-	removePolygon: function(identifier) {
+	removeFeature: function(identifier) {
 		this.map.removeLayer(this.features[identifier]);
 
 		this.features[identifier] = null;
