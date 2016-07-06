@@ -24,7 +24,7 @@ Wee.fn.make('Cartographer', {
 		this.conf = conf;
 
 		if (! conf.mapbox) {
-			url = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+			url = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
 		} else {
 			url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
 		}
