@@ -4,11 +4,11 @@
 	"description": "Easily generate flexible maps. Uses Leaflet 0.7.7 and OpenStreetMaps.",
 	"homepage": "https://github.com/taylordaughtry/cartographer",
 	"author": "Caddis",
-	"autoload": true,
+	"autoload": false,
 	"extension": false,
 	"style": {
 		"build": [
-			"core/css/lib/leaflet.css"
+			"core/css/lib/leaflet.less"
 		]
 	},
 	"script": {
